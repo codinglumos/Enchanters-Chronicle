@@ -49,7 +49,7 @@ export const Register = (props) => {
     }
 
     const updateUser = (evt) => {
-        const copy = {...user}
+        const copy = structuredClone(user)
         copy[evt.target.id] = evt.target.value
         setUser(copy)
     }
@@ -70,6 +70,18 @@ export const Register = (props) => {
                         type="email" id="email" className="form-control"
                         placeholder="Email address" required />
                 </fieldset>
+                {/* <fieldset>
+                    <label htmlFor="witch"> Witch Type </label>
+                    <select option={witch.type} onChange={updateUser}
+                        type="select" id="witch" className="form-control"
+                        placeholder="Witch Type" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="sign"> Zodiac Sign </label>
+                    <input onChange={updateUser}
+                        type="select" id="sign" className="form-control"
+                        placeholder="Zodiac Sign" required />
+                </fieldset> */}
                 
                 <fieldset>
                     <button type="submit"> Register </button>
