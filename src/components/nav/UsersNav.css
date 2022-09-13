@@ -11,12 +11,12 @@
 
 .navbar__logout {
     margin-left: auto;
-    color:chartreuse;
+    color:antiquewhite;
     display: flex;
     flex-direction: column;
     border: 2px solid purple;
     padding: 0.7rem;
     margin: 0.5rem 0;
-    background-color:olive;
+    background-color: black;
     font-weight:bolder;
 }

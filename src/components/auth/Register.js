@@ -1,15 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./Login.css"
-
+//This is the form used when a user doesn't have a login yet
+//The form should collect the following objects to add to the user array
 export const Register = (props) => {
+    //const [magicUserUpdated, setMagicUser] = useState([])
     const [user, setUser] = useState({
         email: "",
         name: "",
-        witch: "",
-        sign: ""
+
     })
     let navigate = useNavigate()
+
 
     const registerNewUser = () => {
         return fetch("http://localhost:8088/users", {
@@ -72,16 +74,18 @@ export const Register = (props) => {
                 </fieldset>
                 {/* <fieldset>
                     <label htmlFor="witch"> Witch Type </label>
-                    <select option={witch.type} onChange={updateUser}
+                    <select>
+                        <option value={witch.type} onChange={updateUser}
                         type="select" id="witch" className="form-control"
-                        placeholder="Witch Type" required />
+                        placeholder="Witch Type" required></option>  
+                        </select>
                 </fieldset>
                 <fieldset>
                     <label htmlFor="sign"> Zodiac Sign </label>
-                    <input onChange={updateUser}
+                    <option onChange={updateUser}
                         type="select" id="sign" className="form-control"
                         placeholder="Zodiac Sign" required />
-                </fieldset> */}
+                </fieldset> THIS WILL BE UPDATED ON USER ACCOUNT INSTEAD*/}
                 
                 <fieldset>
                     <button type="submit"> Register </button>

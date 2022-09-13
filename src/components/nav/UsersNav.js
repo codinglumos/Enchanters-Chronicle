@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import "./UsersNav.css"
+//This module handles the navigation bar- links to Chronicles, logout, etc..
+
 
 export const UserNavBar = () => {
     const navigate = useNavigate()
@@ -9,6 +11,11 @@ export const UserNavBar = () => {
             <li className="navbar__item chronicle">
                 <Link className="navbar__link" to="/chronicles">Chronicles</Link>
             </li>
+
+            <li className="navbar__item chronicle">
+                <Link className="navbar__link" to="/newUser">Update Enchanter</Link>
+            </li>
+
            
             {
             localStorage.getItem("enchanted_user")

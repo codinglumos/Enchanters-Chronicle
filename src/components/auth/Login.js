@@ -2,6 +2,9 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 import "./Login.css"
+//Displays the login page and sets the button to sign in 
+//and the link to create a new account. 
+//TODO I would like to make a picture with quote pop up when you login
 
 export const Login = () => {
     const [email, set] = useState("")

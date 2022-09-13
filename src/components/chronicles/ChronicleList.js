@@ -32,19 +32,6 @@ useEffect(
     [searchChroniclesState]
 )
 
-// useEffect(
-//     () => {
-//         if (topPriced) {
-//           const topPricedProducts = products.filter(product => product.price > 2) 
-//           setFiltered(topPricedProducts)
-//         }
-//         else {
-//             setFiltered(products)
-//         }
-//     },
-//     [topPriced]
-// )
-
 useEffect (
     () => {
         fetch (`http://localhost:8088/chronicles`)
@@ -65,6 +52,8 @@ useEffect(
     [chronicles]
 )
 
+//Need an ?: statement to determine if the user.id matches the current user logged in- if they match then only show the users chronicles
+
 return <>
   { 
         <button onClick={() => navigate("/chronicle/create")}>Create New Chronicle</button>
@@ -83,6 +72,7 @@ return <>
                         {/* Put a moonphase sorter below?? */}
                         {/* {!foundSearched && <section>Sweet Type: {chronicle?.chronicleType?.type}</section>} */}
                         <footer>Written on {chronicle.date}</footer>
+                        
                     </section>
                
                 }
