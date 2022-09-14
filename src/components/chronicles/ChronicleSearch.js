@@ -5,13 +5,13 @@
 export const ChronicleSearch = ({ setterFunction }) => {
     return (
         <div>
-         <input 
+         <input type="text" placeholder="Search Chronicles?"
          onChange={
              (changeEvent) => {
                  setterFunction(changeEvent.target.value)
              }
          }
-         type="text" placeholder="Search Chronicles?" />
+          />
          </div> 
      )
  }

@@ -7,48 +7,54 @@ import "./chronicles.css"
 //useEffect function to filter through locations and list them
 //return html to list locations (iterated) with the name, address,size
 
-export const ChronicleList = ({ searchChroniclesState }) => {
+export const ChronicleList = ({searchChroniclesState}) => {
     const [chronicles, setChronicles] = useState([])
     const [filteredChronicles, setFiltered ] = useState ([])
+   // const [foundSearched, setFoundSearched] = useState(false)
+
    //use below to show only full moons??
     // const [topPriced, setTopPriced] = useState([])
    // const [productTypes, setProductTypes] = useState([])
    //Use below to search for entries with specific moonphases
-   const [foundSearched, setFoundSearched] = useState(false)
-
+  
 const localEnchantedUser = localStorage.getItem("enchanted_user")
 const enchantedUserObject = JSON.parse(localEnchantedUser)
 const navigate = useNavigate()
 
+//use the prop defined in ChronicleContainer to create a UseEffect to search for moon phases
 useEffect(
     () => {
         const searchedChronicles = chronicles.filter(chronicle => 
-            {return chronicle.moonPhaseId.toLowerCase().startsWith(searchChroniclesState.toLowerCase())}
+            {return chronicle.moonPhase.toLowerCase().startsWith(searchChroniclesState.toLowerCase())}
             )
-        searchedChronicles.length > 0 ? setFoundSearched(true) :setFoundSearched(false)
+       // searchedChronicles.length > 0 ? setFoundSearched(true) :setFoundSearched(false)
         setFiltered(searchedChronicles)
-        searchChroniclesState === "" ? setFoundSearched(false) :setFoundSearched(true)
+        //searchChroniclesState === "" ? setFoundSearched(false) :setFoundSearched(true)
     },
     [searchChroniclesState]
 )
 
+const getChronicleList = () => {
+    fetch (`http://localhost:8088/chronicles`)
+    .then(response => response.json())
+    .then((chronicleArray) => {
+        setChronicles(chronicleArray)
+    })
+}
+
 useEffect (
     () => {
-        fetch (`http://localhost:8088/chronicles`)
-        .then(response => response.json())
-        .then((chronicleArray) => {
-            setChronicles(chronicleArray)
-        })
+        getChronicleList()
     },
     []
 )
 
+
 useEffect(
     () => {
-        if(enchantedUserObject) {
-            setFiltered(chronicles)
-        }
-    },
+        const myChronicles = chronicles.filter(chronicle => enchantedUserObject.id === chronicle.userId) 
+            setFiltered(myChronicles)
+        },
     [chronicles]
 )
 
@@ -71,8 +77,20 @@ return <>
                         <header>{chronicle.chronicle}</header>
                         {/* Put a moonphase sorter below?? */}
                         {/* {!foundSearched && <section>Sweet Type: {chronicle?.chronicleType?.type}</section>} */}
-                        <footer>Written on {chronicle.date}</footer>
-                        
+                        <section>{chronicle.moonPhase}</section>
+                        <footer>Conjured on {chronicle.dateCompleted}</footer>
+                     <button
+                     className="btn btn-deleteChronicle"
+                     onClick={() => {
+                        fetch(`http://localhost:8088/chronicles/${chronicle.id}`, {
+                        method: "DELETE",
+                    
+                    })
+                    .then(response => response.json())
+                    .then(() => {
+                        getChronicleList()
+                    })}}
+                     >Vanquish Chronicle</button>   
                     </section>
                
                 }

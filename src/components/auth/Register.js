@@ -5,9 +5,13 @@ import "./Login.css"
 //The form should collect the following objects to add to the user array
 export const Register = (props) => {
     //const [magicUserUpdated, setMagicUser] = useState([])
+    const [witches, setWitches] = useState([])
+    const [signs, setSigns] = useState([])
     const [user, setUser] = useState({
         email: "",
         name: "",
+        witchId: 0,
+        signId: 0
 
     })
     let navigate = useNavigate()
@@ -73,19 +77,41 @@ export const Register = (props) => {
                         placeholder="Email address" required />
                 </fieldset>
                 {/* <fieldset>
-                    <label htmlFor="witch"> Witch Type </label>
-                    <select>
-                        <option value={witch.type} onChange={updateUser}
-                        type="select" id="witch" className="form-control"
-                        placeholder="Witch Type" required></option>  
-                        </select>
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="sign"> Zodiac Sign </label>
-                    <option onChange={updateUser}
-                        type="select" id="sign" className="form-control"
-                        placeholder="Zodiac Sign" required />
-                </fieldset> THIS WILL BE UPDATED ON USER ACCOUNT INSTEAD*/}
+                <div className="form-group">
+                    <label htmlFor="signs">Zodiac Sign:</label>
+                    <select id="signs" value={sign.sign} type="text"
+
+                        onChange={(evt) => {
+                            const copy = structuredClone(profile)
+                                copy.signId = evt.target.value
+                                updatedProfile(copy)
+                        }}>
+                            <option value={signs}></option>
+                            {
+                                signs.map(sign => {
+                                    return <option value={profile.signId}>{sign.sign}</option>
+                                })
+                            }</select>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="witch">Witch Type:</label>
+                    <select id="witch" value={profile.witch} type="text"
+                        onChange={(evt) => {
+                            const copy = structuredClone(profile)
+                                copy.witchId = evt.target.value
+                                updatedProfile(copy)
+                        }}>
+                            <option value={witches}></option>
+                            {
+                                witches.map(witch => {
+                                    return <option value={profile.witchId}>{witch.type}</option>
+                                })
+                            }
+</select>
+                </div>
+            </fieldset> */}
                 
                 <fieldset>
                     <button type="submit"> Register </button>

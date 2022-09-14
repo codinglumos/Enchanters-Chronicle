@@ -1,10 +1,13 @@
 //This module creates the form for writing new chronicles for each user. 
 //I need access to moon phases from the API- fetch call AND set state before
 //I need to POST the completed form to the API when the button is clicked.
-//Add the calendar to the form for users to select the date the entry was made.
+//Add the calendar to the form for users to select the date the entry was made (npm install from Google!)
 
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+
 
 export const ChronicleForm = () => {
     /*
@@ -12,7 +15,7 @@ export const ChronicleForm = () => {
         initial state object
     */
 const [moonPhases, setMoonPhases] = useState([])
-const [date, setDate] = useState("")
+const [date, setDate] = useState(new Date())
 
 useEffect(() => {
     fetch(`http://localhost:8088/moonPhases`, )
@@ -26,7 +29,8 @@ useEffect(() => {
 )
     const [chronicle, update] = useState({
         chronicle: "",
-        moonPhaseId: 0,
+        moonPhase: "",
+        
     })
 
     /*
@@ -45,7 +49,7 @@ useEffect(() => {
             userId: enchantedUserObject.id,
             chronicle: chronicle.chronicle,
             moonPhase: chronicle.moonPhaseId,
-            dateCompleted: ""
+            dateCompleted: date
         }
 
         // TODO: Perform the fetch() to POST the object to the API
@@ -94,8 +98,9 @@ useEffect(() => {
                         }}>
                             <option value={moonPhases}></option>
                             {
+                                //TODO getting errors here- the moon phase is not printing out?!
                                 moonPhases.map(moonPhase => {
-                                    return <option value={chronicle.moonPhaseId}>{moonPhase.phaseName}</option>
+                                    return <option value={chronicle.moonPhase.phaseName}>{moonPhase.phaseName}</option>
                                 })
                             }
 </select>
@@ -104,16 +109,12 @@ useEffect(() => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="date">Date:</label>
-                    <input value= {chronicle.date}
-                    type="calendar"
-                    placeholder="DD/MM/YY"
-                        onChange={
-                            (evt) => {
-                                const copy = structuredClone(chronicle)
-                                copy.date = setDate(evt.target.value)
-                                update(copy)
-                            }}
-                    />
+                    <DatePicker
+                   selected={date} onChange={(date) => {
+                    const copy = structuredClone(chronicle)
+                    copy.dateCompleted = date
+                    setDate(date)
+                    update(copy)}}/>
                 </div>
             </fieldset>
             <fieldset>

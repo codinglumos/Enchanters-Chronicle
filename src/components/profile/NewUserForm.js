@@ -4,18 +4,18 @@
 //The url could be expanded to include witches and signs for the below items on the form.
 //If they are not expanded then there will need to be two fetch calls one for each. 
 //TODO- fix the form so that it updates the witch/sign data in the original userObject- should it be moved to the register page??
+//Should I make the initial state in register.js with the witch and sign!!
 
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-
 
 export const NewUserForm = () => {
     // TODO: Provide initial state for profile
     const [profile, updatedProfile] = useState ({
         witchId: 0,
-        zodiacSignId: 0,
-        userId: 0,
-        email: ""
+        signId: 0,
+        userId: 0
+        
     })
 
     const localEnchantedUser = localStorage.getItem("enchanted_user")
@@ -26,8 +26,9 @@ export const NewUserForm = () => {
     const [signs, setSigns] = useState([])
     const navigate = useNavigate()
 
+//Go fetch users and 
     useEffect(() => {
-        fetch(`http://localhost:8088/users?userId=${enchantedUserObject.id}`)
+        fetch(`http://localhost:8088/users?id=${enchantedUserObject.id}`)
         .then(response => response.json())
         .then((data) => {
             const userObject = data[0]
@@ -35,7 +36,7 @@ export const NewUserForm = () => {
         })
     },
     [])
-
+//Go fetch witches
     useEffect(() => {
         fetch(`http://localhost:8088/witches`)
         .then(response => response.json())
@@ -44,7 +45,7 @@ export const NewUserForm = () => {
         })
     },
     [])
-
+//Go fetch signs
     useEffect(() => {
         fetch(`http://localhost:8088/zodiacSigns`)
         .then(response => response.json())
@@ -54,8 +55,8 @@ export const NewUserForm = () => {
     },
     [])
 
+//Code from Steve to timeout the session for localhost:3000
 const [feedback, setFeedback] = useState("")
-
 
 useEffect(() => {
     if (feedback !== "") {
@@ -63,30 +64,16 @@ useEffect(() => {
         setTimeout(() => setFeedback(""), 3000);
     }
 }, [feedback])
-//POST new user(profile) information to the API when the addNewUser event happens (button click below)
-const addNewUser = (event) => {
+
+//POST new user(profile) information to the API when the updateNewUser event happens (button click below)
+const updateNewUser = (event) => {
     event.preventDefault()
     
-    const userToSendToAPI = {
-        name: profile.name,
-        email: profile.email,
-        zodiacSignId: profile.signId,
-        witchId: profile.witchId
-    }
-    
-    fetch(`http://localhost:8088/users`,{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userToSendToAPI)
-    })
-        .then(response => response.json())
-
-         .then(() => {
-                navigate("/chronicles")
-            })
-        
+    // const userToSendToAPI = {
+    //     signId: profile.sign,
+    //     witchId: profile.witch
+    // }
+    //Need to update the user, not create a new user-- use PUT
             return fetch(`http://localhost:8088/users/${profile.id}`, {
                 method: "PUT",
                 headers: {
@@ -106,77 +93,46 @@ const addNewUser = (event) => {
     {feedback}
 </div>
         <form className="profile">
-            <h2 className="profile__title">New Enchanter's Chronicle Witch</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="specialty">Email:</label>
-                    <input
-                        required autoFocus
-                        type="text"
-                        className="form-control"
-                        value={profile.email}
-                        onChange={
-                            (evt) => {
-                               const copy = structuredClone(profile)
-                               copy.email = evt.target.value
-                               updatedProfile(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
+            <h2 className="profile__title">Update Enchanter</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="signs">Zodiac Sign:</label>
-                    <select id="signs" value={profile.sign}
+                    <select id="signs" value={profile.signId} type="number"
+
                         onChange={(evt) => {
                             const copy = structuredClone(profile)
-                                copy.signId = evt.target.value
+                                copy.signId = parseInt(evt.target.value)
                                 updatedProfile(copy)
                         }}>
                             <option value={signs}></option>
                             {
                                 signs.map(sign => {
-                                    return <option value={profile.signId}>{sign.sign}</option>
+                                    return <option value={sign.id}>{sign.sign}</option>
                                 })
-                            }
-</select>
+                            }</select>
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="witch">Witch Type:</label>
-                    <select id="witch" value={profile.witch}
+                    <select id="witch" value={profile.witchId} type="number"
                         onChange={(evt) => {
                             const copy = structuredClone(profile)
-                                copy.witchId = evt.target.value
+                                copy.witchId = parseInt(evt.target.value)
                                 updatedProfile(copy)
                         }}>
                             <option value={witches}></option>
                             {
                                 witches.map(witch => {
-                                    return <option value={profile.witchId}>{witch.type}</option>
+                                    return <option value={witch.id}>{witch.type}</option>
                                 })
                             }
 </select>
                 </div>
             </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="name">Name:</label>
-                    <input type="text"
-                        className="form-control"
-                        value={profile.name}
-                        onChange={
-                            (evt) => {
-                                const copy = structuredClone(profile)
-                               copy.name = evt.target.value
-                               updatedProfile(copy)
-                            }
-                        } />
-                </div>
-            </fieldset>
+            
             <button
-                onClick={(clickEvent) => addNewUser(clickEvent)}
+                onClick={(clickEvent) => updateNewUser(clickEvent)}
                 className="btn btn-primary">
                 Save Profile
             </button>
