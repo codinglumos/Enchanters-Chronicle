@@ -2,7 +2,8 @@
 //ones on certain moon phases. 
 //I will need to have a prop for moon phases here?
 
-export const ChronicleSearch = ({ setterFunction }) => {
+export const ChronicleSearch = ({ setterFunction }) => {   
+   
     return (
         <div>
          <input type="text" placeholder="Search Chronicles?"

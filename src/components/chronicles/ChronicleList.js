@@ -10,7 +10,7 @@ import "./chronicles.css"
 export const ChronicleList = ({searchChroniclesState}) => {
     const [chronicles, setChronicles] = useState([])
     const [filteredChronicles, setFiltered ] = useState ([])
-   // const [foundSearched, setFoundSearched] = useState(false)
+   const [myChroniclesOnly, setOnlyMine] = useState([])
 
    //use below to show only full moons??
     // const [topPriced, setTopPriced] = useState([])
@@ -22,17 +22,27 @@ const enchantedUserObject = JSON.parse(localEnchantedUser)
 const navigate = useNavigate()
 
 //use the prop defined in ChronicleContainer to create a UseEffect to search for moon phases
+
 useEffect(
     () => {
         const searchedChronicles = chronicles.filter(chronicle => 
             {return chronicle.moonPhase.toLowerCase().startsWith(searchChroniclesState.toLowerCase())}
             )
        // searchedChronicles.length > 0 ? setFoundSearched(true) :setFoundSearched(false)
-        setFiltered(searchedChronicles)
+       setFiltered(searchedChronicles)
+       
+        
         //searchChroniclesState === "" ? setFoundSearched(false) :setFoundSearched(true)
     },
     [searchChroniclesState]
 )
+
+// useEffect(() => {
+//  const myChroniclesOnly = filteredChronicles.filter(chronicle => enchantedUserObject.id === chronicle.userId)
+//  setOnlyMine()
+// },
+// []
+// )
 
 const getChronicleList = () => {
     fetch (`http://localhost:8088/chronicles`)
@@ -41,6 +51,7 @@ const getChronicleList = () => {
         setChronicles(chronicleArray)
     })
 }
+
 
 useEffect (
     () => {
@@ -52,8 +63,10 @@ useEffect (
 
 useEffect(
     () => {
+    
         const myChronicles = chronicles.filter(chronicle => enchantedUserObject.id === chronicle.userId) 
-            setFiltered(myChronicles)
+        setFiltered(myChronicles)
+        
         },
     [chronicles]
 )
