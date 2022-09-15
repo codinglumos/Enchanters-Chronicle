@@ -17,7 +17,7 @@ export const UserNavBar = () => {
             </li>
 
            
-            {
+            { 
             localStorage.getItem("enchanted_user")
             ? <li className="navbar__item navbar__logout">
                 <Link className="navbar__link" to="" onClick={() => {

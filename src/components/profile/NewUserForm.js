@@ -5,6 +5,8 @@
 //If they are not expanded then there will need to be two fetch calls one for each. 
 //TODO- fix the form so that it updates the witch/sign data in the original userObject- should it be moved to the register page??
 //Should I make the initial state in register.js with the witch and sign!!
+//TODO- for the new table I will need to expand users with the userInfo Objectarray to access all the information
+        //TODO- OR I need to create a useEffect and useState for the new userInfo array
 
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -25,8 +27,9 @@ export const NewUserForm = () => {
     const [witches, setWitches] = useState([])
     const [signs, setSigns] = useState([])
     const navigate = useNavigate()
+    const [addMore, setAddMore] = useState([])
 
-//Go fetch users and 
+//Go fetch users 
     useEffect(() => {
         fetch(`http://localhost:8088/users?id=${enchantedUserObject.id}`)
         .then(response => response.json())
@@ -36,6 +39,8 @@ export const NewUserForm = () => {
         })
     },
     [])
+//TODO Go fetch userInfo to use and update the below information with the new table
+    
 //Go fetch witches
     useEffect(() => {
         fetch(`http://localhost:8088/witches`)
@@ -97,8 +102,8 @@ const updateNewUser = (event) => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="signs">Zodiac Sign:</label>
-                    <select id="signs" value={profile.signId} type="number"
-
+                    <select id="signs" value={profile?.userInfo?.signId} type="number"
+                        
                         onChange={(evt) => {
                             const copy = structuredClone(profile)
                                 copy.signId = parseInt(evt.target.value)
@@ -107,7 +112,7 @@ const updateNewUser = (event) => {
                             <option value={signs}></option>
                             {
                                 signs.map(sign => {
-                                    return <option value={sign.id}>{sign.sign}</option>
+                                    return <option value={sign.id} key={`sign--${userInfo?.sign?.id}`}>{sign.sign}</option>
                                 })
                             }</select>
                 </div>
@@ -115,7 +120,7 @@ const updateNewUser = (event) => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="witch">Witch Type:</label>
-                    <select id="witch" value={profile.witchId} type="number"
+                    <select id="witch" value={profile.witchId} type="number" 
                         onChange={(evt) => {
                             const copy = structuredClone(profile)
                                 copy.witchId = parseInt(evt.target.value)
@@ -124,7 +129,7 @@ const updateNewUser = (event) => {
                             <option value={witches}></option>
                             {
                                 witches.map(witch => {
-                                    return <option value={witch.id}>{witch.type}</option>
+                                    return <option value={witch.id} key={`witch--${witch.id}`}>{witch.type}</option>
                                 })
                             }
 </select>

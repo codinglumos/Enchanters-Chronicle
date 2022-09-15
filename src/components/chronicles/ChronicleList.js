@@ -7,10 +7,10 @@ import "./chronicles.css"
 //useEffect function to filter through locations and list them
 //return html to list locations (iterated) with the name, address,size
 
+
 export const ChronicleList = ({searchChroniclesState}) => {
     const [chronicles, setChronicles] = useState([])
     const [filteredChronicles, setFiltered ] = useState ([])
-   const [myChroniclesOnly, setOnlyMine] = useState([])
 
    //use below to show only full moons??
     // const [topPriced, setTopPriced] = useState([])
@@ -25,7 +25,7 @@ const navigate = useNavigate()
 
 useEffect(
     () => {
-        const searchedChronicles = chronicles.filter(chronicle => 
+        const searchedChronicles = filteredChronicles.filter(chronicle => 
             {return chronicle.moonPhase.toLowerCase().startsWith(searchChroniclesState.toLowerCase())}
             )
        // searchedChronicles.length > 0 ? setFoundSearched(true) :setFoundSearched(false)
@@ -44,6 +44,7 @@ useEffect(
 // []
 // )
 
+//fetch all the chronicles
 const getChronicleList = () => {
     fetch (`http://localhost:8088/chronicles`)
     .then(response => response.json())
@@ -52,11 +53,12 @@ const getChronicleList = () => {
     })
 }
 
-
+//Make a use Effect to load the chronicle list when clicked
 useEffect (
     () => {
         getChronicleList()
     },
+   //when this file is loaded go get chronicles
     []
 )
 
@@ -68,6 +70,7 @@ useEffect(
         setFiltered(myChronicles)
         
         },
+        //Set array below to watch for a change in chronicles. 
     [chronicles]
 )
 
@@ -89,7 +92,6 @@ return <>
                     return <section className="chronicle" key={`chronicle--${chronicle.id}`}>
                         <header>{chronicle.chronicle}</header>
                         {/* Put a moonphase sorter below?? */}
-                        {/* {!foundSearched && <section>Sweet Type: {chronicle?.chronicleType?.type}</section>} */}
                         <section>{chronicle.moonPhase}</section>
                         <footer>Conjured on {chronicle.dateCompleted}</footer>
                      <button

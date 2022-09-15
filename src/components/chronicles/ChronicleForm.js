@@ -10,10 +10,7 @@ import "react-datepicker/dist/react-datepicker.css"
 
 
 export const ChronicleForm = () => {
-    /*
-        TODO: Add the correct default properties to the
-        initial state object
-    */
+   
 const [moonPhases, setMoonPhases] = useState([])
 const [date, setDate] = useState(new Date())
 
@@ -27,6 +24,10 @@ useEffect(() => {
 []
 
 )
+ /*
+        TODO: Add the correct default properties to the
+        initial state object
+    */
     const [chronicle, update] = useState({
         chronicle: "",
         moonPhase: "",
@@ -100,7 +101,7 @@ useEffect(() => {
                             {
                                 //TODO getting errors here- the moon phase is not printing out?!
                                 moonPhases.map(moonPhase => {
-                                    return <option value={chronicle.moonPhase.phaseName}>{moonPhase.phaseName}</option>
+                                    return <option value={chronicle.moonPhase.phaseName} key={`moonPhase--${moonPhase.id}`}>{moonPhase.phaseName}</option>
                                 })
                             }
 </select>

@@ -5,13 +5,12 @@ import "./Login.css"
 //The form should collect the following objects to add to the user array
 export const Register = (props) => {
     //const [magicUserUpdated, setMagicUser] = useState([])
-    const [witches, setWitches] = useState([])
-    const [signs, setSigns] = useState([])
+   // const [witches, setWitches] = useState([])
+   // const [signs, setSigns] = useState([])
     const [user, setUser] = useState({
         email: "",
         name: "",
-        witchId: 0,
-        signId: 0
+
 
     })
     let navigate = useNavigate()
