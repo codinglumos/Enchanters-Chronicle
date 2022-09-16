@@ -13,34 +13,25 @@ import { useNavigate } from "react-router-dom"
 
 export const NewUserForm = () => {
     // TODO: Provide initial state for profile
-    const [profile, updatedProfile] = useState ({
+    const [userInfo, updatedUserInfo] = useState ({
         witchId: 0,
         signId: 0,
-        userId: 0
-        
+        userId: 0      
     })
-
+    
     const localEnchantedUser = localStorage.getItem("enchanted_user")
     const enchantedUserObject = JSON.parse(localEnchantedUser)
+    //set state for userInfo id
+    const [updateInfoId, setUpdateInfoId] = useState({
+        witchId: 0,
+        signId: 0
+    })
 
     // TODO: Get employee profile info from API and update state
     const [witches, setWitches] = useState([])
     const [signs, setSigns] = useState([])
-    const navigate = useNavigate()
-    const [addMore, setAddMore] = useState([])
 
-//Go fetch users 
-    useEffect(() => {
-        fetch(`http://localhost:8088/users?id=${enchantedUserObject.id}`)
-        .then(response => response.json())
-        .then((data) => {
-            const userObject = data[0]
-            updatedProfile(userObject)
-        })
-    },
-    [])
 //TODO Go fetch userInfo to use and update the below information with the new table
-    
 //Go fetch witches
     useEffect(() => {
         fetch(`http://localhost:8088/witches`)
@@ -70,29 +61,64 @@ useEffect(() => {
     }
 }, [feedback])
 
-//POST new user(profile) information to the API when the updateNewUser event happens (button click below)
-const updateNewUser = (event) => {
-    event.preventDefault()
-    
-    // const userToSendToAPI = {
-    //     signId: profile.sign,
-    //     witchId: profile.witch
-    // }
-    //Need to update the user, not create a new user-- use PUT
-            return fetch(`http://localhost:8088/users/${profile.id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(profile)
-               })
-        
-               .then(response => response.json())
-               .then(() => {
-                setFeedback("Witch profile successfully saved")
-            })
-    }   
+//Go fetch users 
+useEffect(() => {
+    fetch(`http://localhost:8088/users?id=${enchantedUserObject.id}`)
+    .then(response => response.json())
+    .then((data) => {
+        const userObject = data[0]
+        updatedUserInfo(userObject)
+    })
+    fetch(`http://localhost:8088/userInfos?userId=${enchantedUserObject.id}`)
+    .then(response => response.json())
+    .then((data) => {
+        setUpdateInfoId(data.id)
+    })
+},
+[])
 
+//POST new user(profile) information to the API when the updateNewUser event happens (button click below)
+const updatedUser = (event) => {
+    event.preventDefault()
+
+    const userInfoToSendToAPI = {
+        signId: userInfo.signId,
+        witchId: userInfo.witchId,
+        userId: enchantedUserObject.id
+    } 
+
+   //TODO-paseInt the updateInfoId?? 
+    if (parseInt(userInfo.id) === 0) {  
+       
+       // console.log(updateInfoId)
+        return fetch('http://localhost:8088/userInfos', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userInfoToSendToAPI)
+    })
+    .then(response => response.json())
+    .then(() =>{
+        setFeedback("Enchanter's profile successfully saved")
+
+    })}
+    else {
+        return fetch(`http://localhost:8088/userInfos/${updateInfoId.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updateInfoId)
+        })
+        .then(response => response.json())
+        .then(() =>{
+            setFeedback("Enchanter's profile successfully updated")
+    
+        })
+    }
+ 
+} 
     return (<>
     <div className={`${feedback.includes("Error") ? "error" : "feedback"} ${feedback === "" ? "invisible" : "visible"}`}>
     {feedback}
@@ -102,17 +128,17 @@ const updateNewUser = (event) => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="signs">Zodiac Sign:</label>
-                    <select id="signs" value={profile?.userInfo?.signId} type="number"
+                    <select id="signs" value={userInfo.signId} type="number"
                         
                         onChange={(evt) => {
-                            const copy = structuredClone(profile)
+                            const copy = structuredClone(userInfo)
                                 copy.signId = parseInt(evt.target.value)
-                                updatedProfile(copy)
+                                updatedUserInfo(copy)
                         }}>
                             <option value={signs}></option>
                             {
                                 signs.map(sign => {
-                                    return <option value={sign.id} key={`sign--${userInfo?.sign?.id}`}>{sign.sign}</option>
+                                    return <option value={sign.id} key={`sign--${sign.id}`}>{sign.sign}</option>
                                 })
                             }</select>
                 </div>
@@ -120,11 +146,11 @@ const updateNewUser = (event) => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="witch">Witch Type:</label>
-                    <select id="witch" value={profile.witchId} type="number" 
+                    <select id="witch" value={userInfo.witchId} type="number" 
                         onChange={(evt) => {
-                            const copy = structuredClone(profile)
+                            const copy = structuredClone(userInfo)
                                 copy.witchId = parseInt(evt.target.value)
-                                updatedProfile(copy)
+                                updatedUserInfo(copy)
                         }}>
                             <option value={witches}></option>
                             {
@@ -137,7 +163,7 @@ const updateNewUser = (event) => {
             </fieldset>
             
             <button
-                onClick={(clickEvent) => updateNewUser(clickEvent)}
+                onClick={(clickEvent) => updatedUser(clickEvent)}
                 className="btn btn-primary">
                 Save Profile
             </button>
