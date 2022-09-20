@@ -20,12 +20,6 @@ const formData = new FormData();
   formData.append("name", name);
   formData.append("file", selectedFile);
 
-  axios
-    .post(UPLOAD_URL, formData)
-    .then((res) => {
-      alert("File Upload success");
-    })
-    .catch((err) => alert("File Upload Error"));
 
 useEffect(() => {
     fetch(`http://localhost:8088/moonPhases`, )
@@ -132,19 +126,6 @@ useEffect(() => {
                 </div>
             </fieldset>
             <fieldset>
-        <fieldset>
-        <div className="App">
-        <input   type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <FileUploaded
-          onFileSelectSuccess={(file) => setSelectedFile(file)}
-          onFileSelectError={({ error }) => alert(error)}
-        />
-        </div>
-        </fieldset>
 
             <button 
             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)} 
