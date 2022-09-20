@@ -10,8 +10,7 @@ export const Register = (props) => {
     const [user, setUser] = useState({
         email: "",
         name: "",
-
-
+        
     })
     let navigate = useNavigate()
 
@@ -26,10 +25,26 @@ export const Register = (props) => {
         })
             .then(res => res.json())
             .then(createdUser => {
+            fetch('http://localhost:8088/userInfos', {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+        },
+            body: JSON.stringify({
+                userId: createdUser.id,
+                witchId: 0,
+                signId: 0
+            })
+    })
+    .then(response => response.json())
+    .then(() =>{
+        //setFeedback("Enchanter's profile successfully saved")
+
+    })
                 if (createdUser.hasOwnProperty("id")) {
                     localStorage.setItem("enchanted_user", JSON.stringify({
                         id: createdUser.id,
-                        staff: createdUser.isStaff
+                       
                     }))
 
                     navigate("/")
@@ -113,7 +128,7 @@ export const Register = (props) => {
             </fieldset> */}
                 
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <button className="button--close" type="submit"> Register </button>
                 </fieldset>
             </form>
         </main>

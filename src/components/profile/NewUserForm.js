@@ -10,6 +10,7 @@
 
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import "./NewUserForm.css"
 
 export const NewUserForm = () => {
     // TODO: Provide initial state for profile
@@ -22,10 +23,7 @@ export const NewUserForm = () => {
     const localEnchantedUser = localStorage.getItem("enchanted_user")
     const enchantedUserObject = JSON.parse(localEnchantedUser)
     //set state for userInfo id
-    const [updateInfoId, setUpdateInfoId] = useState({
-        witchId: 0,
-        signId: 0
-    })
+    const [updateInfoId, setUpdateInfoId] = useState(0)
 
     // TODO: Get employee profile info from API and update state
     const [witches, setWitches] = useState([])
@@ -72,7 +70,7 @@ useEffect(() => {
     fetch(`http://localhost:8088/userInfos?userId=${enchantedUserObject.id}`)
     .then(response => response.json())
     .then((data) => {
-        setUpdateInfoId(data.id)
+        setUpdateInfoId(data[0].id)
     })
 },
 [])
@@ -84,39 +82,25 @@ const updatedUser = (event) => {
     const userInfoToSendToAPI = {
         signId: userInfo.signId,
         witchId: userInfo.witchId,
-        userId: enchantedUserObject.id
+        //userId: enchantedUserObject.id
     } 
 
    //TODO-paseInt the updateInfoId?? 
-    if (parseInt(userInfo.id) === 0) {  
-       
-       // console.log(updateInfoId)
-        return fetch('http://localhost:8088/userInfos', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userInfoToSendToAPI)
-    })
-    .then(response => response.json())
-    .then(() =>{
-        setFeedback("Enchanter's profile successfully saved")
-
-    })}
-    else {
-        return fetch(`http://localhost:8088/userInfos/${updateInfoId.id}`, {
+  
+        console.log(updateInfoId)
+        return fetch(`http://localhost:8088/userInfos/${updateInfoId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(updateInfoId)
+            body: JSON.stringify(userInfoToSendToAPI)
         })
         .then(response => response.json())
         .then(() =>{
             setFeedback("Enchanter's profile successfully updated")
     
         })
-    }
+    
  
 } 
     return (<>
@@ -127,8 +111,8 @@ const updatedUser = (event) => {
             <h2 className="profile__title">Update Enchanter</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="signs">Zodiac Sign:</label>
-                    <select id="signs" value={userInfo.signId} type="number"
+                    <label className="box_label" htmlFor="signs">Zodiac Sign:</label>
+                    <select className="box" id="signs" value={userInfo.signId} type="number"
                         
                         onChange={(evt) => {
                             const copy = structuredClone(userInfo)
@@ -145,8 +129,8 @@ const updatedUser = (event) => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="witch">Witch Type:</label>
-                    <select id="witch" value={userInfo.witchId} type="number" 
+                    <label className="box_label" htmlFor="witch">Witch Type:</label>
+                    <select className="box" id="witch" value={userInfo.witchId} type="number" 
                         onChange={(evt) => {
                             const copy = structuredClone(userInfo)
                                 copy.witchId = parseInt(evt.target.value)
@@ -164,7 +148,7 @@ const updatedUser = (event) => {
             
             <button
                 onClick={(clickEvent) => updatedUser(clickEvent)}
-                className="btn btn-primary">
+                className="btn-btn-primary">
                 Save Profile
             </button>
         </form>

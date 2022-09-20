@@ -92,10 +92,10 @@ return <>
                     return <section className="chronicle" key={`chronicle--${chronicle.id}`}>
                         <header>{chronicle.chronicle}</header>
                         {/* Put a moonphase sorter below?? */}
-                        <section>{chronicle.moonPhase}</section>
-                        <footer>Conjured on {chronicle.dateCompleted}</footer>
+                        <section className="chronicle_moon">Moon Phase: {chronicle.moonPhase}</section>
+                        <footer className="chronicle_date">Conjured on {chronicle.dateCompleted}</footer>
                      <button
-                     className="btn btn-deleteChronicle"
+                     className="btn-btn-deleteChronicle"
                      onClick={() => {
                         fetch(`http://localhost:8088/chronicles/${chronicle.id}`, {
                         method: "DELETE",
