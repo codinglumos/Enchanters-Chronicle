@@ -8,18 +8,14 @@ import { useNavigate } from "react-router-dom"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
-
 export const ChronicleForm = () => {
 
-const [name, setName] = useState("");
-const [selectedFile, setSelectedFile] = useState(null);
+//const [name, setName] = useState("");
+//const [selectedFile, setSelectedFile] = useState(null);
 const [moonPhases, setMoonPhases] = useState([])
 const [date, setDate] = useState(new Date())
-
-const formData = new FormData();
-  formData.append("name", name);
-  formData.append("file", selectedFile);
-
+//const [loading, setLoading] = useState(false)
+//const [image, setImage] = useState("")
 
 useEffect(() => {
     fetch(`http://localhost:8088/moonPhases`, )
@@ -31,6 +27,7 @@ useEffect(() => {
 []
 
 )
+
  /*
         TODO: Add the correct default properties to the
         initial state object
@@ -72,6 +69,8 @@ useEffect(() => {
         .then(() => {
             navigate("/chronicles")
         })
+
+      
     }
 
     return (

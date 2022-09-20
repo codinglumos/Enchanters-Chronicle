@@ -5,6 +5,7 @@ import { NewUserForm } from "../profile/NewUserForm"
 import { ChronicleContainer } from "../chronicles/ChronicleContainer"
 import { ChronicleSearch } from "../chronicles/ChronicleSearch"
 import { useState } from "react"
+import { ChronicleEdit } from "../chronicles/ChroniclesEdit"
 
 //This is what the users see when they log in
 //Then routes are made here to take users to other places on the app
@@ -26,6 +27,8 @@ export const UserViews = () => {
         <Route path="chronicle/create" element={ <ChronicleForm/> } />
         <Route path="chronicles" element={<ChronicleContainer />} />  
        ! <Route path="newUser" element={<NewUserForm /> } />
+       <Route path="chronicles/:chronicleId/edit" element={ <ChronicleEdit /> } />
+
 
 		    </Route>
         </Routes>
