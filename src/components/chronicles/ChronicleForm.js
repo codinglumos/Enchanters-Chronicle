@@ -154,7 +154,7 @@ useEffect(() => {
 <fieldset>
     <div>
         <div>
-            <input type="file" onChange={(e)=> setImage(e.target.files[0])} />
+            <input className="chronicle_image" type="file" onChange={(e)=> setImage(e.target.files[0])} />
         </div>
     </div>
 </fieldset>

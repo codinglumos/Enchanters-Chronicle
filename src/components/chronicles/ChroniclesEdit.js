@@ -40,8 +40,8 @@ export const ChronicleEdit = () => {
     }
 
 
-    return <form className="ticketForm">
-        <h2 className="ticketForm__title">Transfigure this Chronicle</h2>
+    return <form className="chronicleForm">
+        <h2 className="chronicleForm__title">Transfigure this Chronicle</h2>
         <fieldset>
             <div className="form-group">
                 <label htmlFor="chronicle">Chronicle Entry:</label>

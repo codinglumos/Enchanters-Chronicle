@@ -18,6 +18,9 @@ export const UserViews = () => {
                 <>
                     <h1>Enchanter's Chronicle</h1>
                     <h2>“There is a little witch in all of us.”</h2>
+                    <div>
+                        <img src="" />
+                    </div>
 
                     <Outlet />
                 </>

@@ -1,8 +1,11 @@
 For the image attached to sign chosen- the background will change on select
-In thendatabase a key for image will need to be added to the signs Onject array
+In the database a key for image will need to be added to the signs Onject array
 Then in a new sign folder a module for displaying images for each sign will be made
 -a fetch call for the sign object array
 -then jsx or css to show the images as backgrounds...?
+-call the function on the application views module?
+
+Do the same as above for the witches images too
 
 For the image uploading component of the app Chronicle Entry form
 -Users will be able to upload pictures taken 

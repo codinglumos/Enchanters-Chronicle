@@ -67,3 +67,9 @@
       padding: 10px 20px;
     }
   }
+
+  .img, .chronicle_image {
+    border-radius: 8px;
+    max-width: 100%;
+  height: auto;
+  }
