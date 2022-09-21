@@ -2,7 +2,6 @@
 //I need access to moon phases from the API- fetch call AND set state before
 //I need to POST the completed form to the API when the button is clicked.
 //Add the calendar to the form for users to select the date the entry was made (npm install from Google!)
-
 import { useEffect, useState, React } from "react"
 import { useNavigate } from "react-router-dom"
 import DatePicker from "react-datepicker"
@@ -15,7 +14,8 @@ export const ChronicleForm = () => {
 const [moonPhases, setMoonPhases] = useState([])
 const [date, setDate] = useState(new Date())
 //const [loading, setLoading] = useState(false)
-//const [image, setImage] = useState("")
+const [image, setImage] = useState("")
+const [url, setUrl] = useState("https://api.cloudinary.com/v1_1/dp9hatn4d/upload")
 
 useEffect(() => {
     fetch(`http://localhost:8088/moonPhases`, )
@@ -54,21 +54,48 @@ useEffect(() => {
             userId: enchantedUserObject.id,
             chronicle: chronicle.chronicle,
             moonPhase: chronicle.moonPhaseId,
-            dateCompleted: date
+            dateCompleted: date    
         }
 
+        const imageData = new FormData()
+        imageData.append("file", image)
+        imageData.append("upload_preset", "enchanters_chronicleForm")
+            fetch(url, {
+                method:"POST",
+                body: imageData
+            })
+            .then(response => response.json())
+            .then((data) => {
+                chronicleToSendToAPI.chronicleImageUrl = data.url
+                return fetch(`http://localhost:8088/chronicles`, {
+                    method:"POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(chronicleToSendToAPI)
+                })
+                .then(response => response.json())
+                .then(() => {
+                    
+                    navigate("/chronicles")
+                })
+            })
+
+            .catch(err => console.log(err))
+        
         // TODO: Perform the fetch() to POST the object to the API
-        return fetch(`http://localhost:8088/chronicles`, {
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(chronicleToSendToAPI)
-        })
-        .then(response => response.json())
-        .then(() => {
-            navigate("/chronicles")
-        })
+        // return fetch(`http://localhost:8088/chronicles`, {
+        //     method:"POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify(chronicleToSendToAPI)
+        // })
+        // .then(response => response.json())
+        // .then(() => {
+        //     uploadImage()
+        //     navigate("/chronicles")
+        // })
 
       
     }
@@ -124,8 +151,15 @@ useEffect(() => {
                     update(copy)}}/>
                 </div>
             </fieldset>
-            <fieldset>
+<fieldset>
+    <div>
+        <div>
+            <input type="file" onChange={(e)=> setImage(e.target.files[0])} />
+        </div>
+    </div>
+</fieldset>
 
+            <fieldset>
             <button 
             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)} 
             className="btn btn-primary">
@@ -135,3 +169,8 @@ useEffect(() => {
         </form>
     )
 }
+
+
+// cloudinary.v2.uploader.upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
+//   { public_id: "olympic_flag" }, 
+//   function(error, result) {console.log(result); })

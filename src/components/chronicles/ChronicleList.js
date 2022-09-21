@@ -93,7 +93,9 @@ return <>
                         <header>{chronicle.chronicle}</header>
                         {/* Put a moonphase sorter below?? */}
                         <section className="chronicle_moon">Moon Phase: {chronicle.moonPhase}</section>
+                        <img src={chronicle.chronicleImageUrl} />
                         <footer className="chronicle_date">Conjured on {chronicle.dateCompleted}</footer>
+                        
                      <button
                      className="btn-btn-deleteChronicle"
                      onClick={() => {
