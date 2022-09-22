@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
 .chronicles {
     display: flex;
     flex-direction: column;
@@ -12,7 +14,6 @@
 }
 
 .form-control, .profile {
-    padding: 0.7rem;
     margin: 0.5rem 0;
     color: black;
     font-family: 'Architects Daughter',cursive;
@@ -20,12 +21,23 @@
     line-height: 1.5;
 }
 
+.profile{
+  background-image: url(https://static.vecteezy.com/system/resources/previews/003/841/958/original/gold-triple-moon-sacred-geometry-half-moon-pagan-wiccan-goddess-symbol-moon-phases-old-golden-wicca-banner-sign-lotus-flower-energy-circle-boho-style-isolated-on-black-background-vector.jpg);
+  padding: 100px 250px;
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: center;
+}
+
+.updateforms {
+  border: 4px, solid, gold;
+  border-radius: 10;
+}
+
 .form-group {
-    background-color: darkcyan;
-    background-image: linear-gradient(rgba(179, 132, 201, .84), rgba(57, 31, 91, .84) 50%);
+    background-color: purple;
     border-radius: 42px;
     border-width: 0;
-    box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
     color:darkkhaki;
     cursor: pointer;
     display: flex;
@@ -35,7 +47,6 @@
     letter-spacing: .04em;
     line-height: 16px;
     margin: 0;
-    padding: 18px 18px;
     text-align: right;
     text-decoration: none;
     text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(57, 31, 91, 0.6) 1px 1px 4px,rgba(57, 31, 91, 0.32) 4px 4px 16px;
@@ -46,13 +57,12 @@
 }
 
 .btn-btn-primary {
+  background-image: radial-gradient(white, gold 50%);
   align-items: center;
   background-color: darkcyan;
-  background-image: linear-gradient(rgba(179, 132, 201, .84), rgba(57, 31, 91, .84) 50%);
   border-radius: 42px;
   border-width: 0;
-  box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
-  color: #FFFFFF;
+  color:black;
   cursor: pointer;
   display: flex;
   font-family: 'Architects Daughter',cursive;
@@ -61,7 +71,7 @@
   justify-content: center;
   letter-spacing: .04em;
   line-height: 16px;
-  margin: 0;
+  margin: 10px;
   padding: 18px 18px;
   text-align: center;
   text-decoration: none;
@@ -72,9 +82,7 @@
   vertical-align: baseline;
 }
 
-.btn-btn-primary {
-  background-image: linear-gradient(#B384C9, #391F5B 50%);
-}
+
 
 @media (min-width: 768px) {
     .btn-btn-primary {
@@ -149,4 +157,38 @@
 .box_label {
     text-align: center;
     align-content: space-around;
+
+}
+
+select {
+  margin: 0 auto;
+  color: darkcyan;
+  width: 310px;
+  padding: 15px;
+  height: 25px;
+  cursor: pointer;
+  background-color: gold;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+select:hover {
+  background-color: transparent;
+  color: white;
+  padding: 15px 5px 15px 25px;
+}
+
+select option {
+  background-color: white;
+  color: gray;
+  width: 310px;
+  padding: 10px 15px;
+  height: 20px;
+  cursor: pointer;
+}
+
+select option:hover {
+  padding-left: 25px;
+  width: 270px;
+  color: #EC6F66;
 }

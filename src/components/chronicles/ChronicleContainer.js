@@ -4,6 +4,7 @@
 import { useState } from "react"
 import { ChronicleList } from "./ChronicleList"
 import { ChronicleSearch } from "./ChronicleSearch"
+import { ChronicleEdit } from "./ChroniclesEdit"
 
 export const ChronicleContainer = () => {
     const [searchChronicles, setSearchChronicles] = useState("")
@@ -11,6 +12,7 @@ export const ChronicleContainer = () => {
     return <>
     <ChronicleSearch setterFunction={setSearchChronicles}/>
     <ChronicleList searchChroniclesState={searchChronicles}/>
+    {/* <ChronicleEdit editChronicles={editThoseChronicles}/> */}
     </>
    
 }

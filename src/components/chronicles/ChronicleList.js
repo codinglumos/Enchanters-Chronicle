@@ -23,26 +23,23 @@ const navigate = useNavigate()
 
 //use the prop defined in ChronicleContainer to create a UseEffect to search for moon phases
 
+const myChronicles = () => {
+   const myDoneChronicles = chronicles.filter(chronicle => enchantedUserObject.id === chronicle.userId) 
+  setFiltered(myDoneChronicles)
+}
+
 useEffect(
     () => {
         const searchedChronicles = filteredChronicles.filter(chronicle => 
-            {return chronicle.moonPhase.toLowerCase().startsWith(searchChroniclesState.toLowerCase())}
+            {return chronicle.moonPhase.toLowerCase().includes(searchChroniclesState.toLowerCase())}
             )
-       // searchedChronicles.length > 0 ? setFoundSearched(true) :setFoundSearched(false)
-       setFiltered(searchedChronicles)
-       
-        
-        //searchChroniclesState === "" ? setFoundSearched(false) :setFoundSearched(true)
+    //searchedChronicles.length > 0 ? setFoundSearched(true) :setFoundSearched(false)
+         
+       searchChroniclesState === "" ? myChronicles() :setFiltered(searchedChronicles)
+
     },
     [searchChroniclesState]
 )
-
-// useEffect(() => {
-//  const myChroniclesOnly = filteredChronicles.filter(chronicle => enchantedUserObject.id === chronicle.userId)
-//  setOnlyMine()
-// },
-// []
-// )
 
 //fetch all the chronicles
 const getChronicleList = () => {
@@ -50,6 +47,7 @@ const getChronicleList = () => {
     .then(response => response.json())
     .then((chronicleArray) => {
         setChronicles(chronicleArray)
+        setFiltered(chronicleArray)
     })
 }
 
@@ -57,17 +55,17 @@ const getChronicleList = () => {
 useEffect (
     () => {
         getChronicleList()
+        setFiltered()
+
     },
    //when this file is loaded go get chronicles
     []
 )
 
-
 useEffect(
     () => {
     
-        const myChronicles = chronicles.filter(chronicle => enchantedUserObject.id === chronicle.userId) 
-        setFiltered(myChronicles)
+       myChronicles()
         
         },
         //Set array below to watch for a change in chronicles. 
@@ -78,24 +76,25 @@ useEffect(
 
 return <>
   { 
-        <button onClick={() => navigate("/chronicle/create")}>Create New Chronicle</button>
+        <button className="create-button" onClick={() => navigate("/chronicle/create")}>Create New Chronicle</button>
     }
 {/* <button onClick={() => {setTopPriced(true)}}>Top Priced</button>
 <button onClick={() => {setTopPriced(false)}}>All Products</button> */}
 
-    <h2>List of Chronicles</h2>
+    <h2 className="title-h2">Tally of Chronicles</h2>
 
     <article className="chronicles">
         {
             filteredChronicles.map(
                 (chronicle) => {
-                    return <section className="chronicle" key={`chronicle--${chronicle.id}`}>
+                    return <section className="chroniclelist" key={`chronicle--${chronicle.id}`}>
                         <header>{chronicle.chronicle}</header>
                         {/* Put a moonphase sorter below?? */}
                         <section className="chronicle_moon">Moon Phase: {chronicle.moonPhase}</section>
                         <img src={chronicle.chronicleImageUrl} />
                         <footer className="chronicle_date">Conjured on {chronicle.dateCompleted}</footer>
-                        
+                        <button className="edit-button" onClick={() => navigate(`/chronicles/${chronicle.id}/edit`)}>Transfigure</button>
+      
                      <button
                      className="btn-btn-deleteChronicle"
                      onClick={() => {
@@ -106,10 +105,11 @@ return <>
                     .then(response => response.json())
                     .then(() => {
                         getChronicleList()
+                        
                     })}}
                      >Vanquish Chronicle</button>   
+
                     </section>
-               
                 }
             )
         }

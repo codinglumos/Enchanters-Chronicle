@@ -8,11 +8,11 @@ export const UserNavBar = () => {
 
     return (
         <ul className="navbar">
-            <li className="navbar__item chronicle">
+            <li className="navbar__item chronicle-list">
                 <Link className="navbar__link" to="/chronicles">Chronicles</Link>
             </li>
 
-            <li className="navbar__item chronicle">
+            <li className="navbar__item chronicle-update">
                 <Link className="navbar__link" to="/newUser">Update Enchanter</Link>
             </li>
 

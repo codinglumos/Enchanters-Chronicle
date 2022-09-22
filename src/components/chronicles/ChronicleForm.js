@@ -83,32 +83,20 @@ useEffect(() => {
 
             .catch(err => console.log(err))
         
-        // TODO: Perform the fetch() to POST the object to the API
-        // return fetch(`http://localhost:8088/chronicles`, {
-        //     method:"POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify(chronicleToSendToAPI)
-        // })
-        // .then(response => response.json())
-        // .then(() => {
-        //     uploadImage()
-        //     navigate("/chronicles")
-        // })
-
-      
     }
 
     return (
-        <form className="chronicleForm">
-            <h2 className="chronicleForm__title">New Chronicle Entry</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="chronicle">Chronicle:</label>
-                    <input
-                        required autoFocus
-                        type="text"
+        <form className="chronicleform">
+            <h2 className="title-h1">New Chronicle Entry</h2>
+            <fieldset className="updateforms">
+                <div className="select">
+                    <label className="title-h11" htmlFor="chronicle">Chronicle:</label>
+                    <textarea
+                    required autoFocus
+                    type="text"
+                    style={{
+                        height: "10rem"
+                    }}
                         className="form-control"
                         placeholder="New Chronicle Entry.."
                         value={chronicle.chronicle}
@@ -122,9 +110,9 @@ useEffect(() => {
                 </div>
             </fieldset>
             <fieldset>
-                <div className="form-group">
-                    <label htmlFor="moonPhases">Moon Phase:</label>
-                    <select id="moonPhases" value={chronicle.moonPhaseId}
+                <div className="select">
+                    <label className="title-h11" htmlFor="moonPhases">Moon Phase:</label>
+                    <select  placeholder="Choose Moon Phase" className="form-control" id="moonPhases" value={chronicle.moonPhaseId}
                         onChange={(evt) => {
                             const copy = structuredClone(chronicle)
                                 copy.moonPhaseId = evt.target.value
@@ -134,17 +122,17 @@ useEffect(() => {
                             {
                                 //TODO getting errors here- the moon phase is not printing out?!
                                 moonPhases.map(moonPhase => {
-                                    return <option value={chronicle.moonPhase.phaseName} key={`moonPhase--${moonPhase.id}`}>{moonPhase.phaseName}</option>
+                                    return <option className="select option" value={chronicle.moonPhase.phaseName} key={`moonPhase--${moonPhase.id}`}>{moonPhase.phaseName}</option>
                                 })
                             }
 </select>
                 </div>
             </fieldset>
             <fieldset>
-                <div className="form-group">
-                    <label htmlFor="date">Date:</label>
-                    <DatePicker
-                   selected={date} onChange={(date) => {
+                <div className="select">
+                    <label className="title-h11" htmlFor="date">Date:</label>
+                    <DatePicker 
+                    className="form-control" selected={date} onChange={(date) => {
                     const copy = structuredClone(chronicle)
                     copy.dateCompleted = date
                     setDate(date)
@@ -153,8 +141,8 @@ useEffect(() => {
             </fieldset>
 <fieldset>
     <div>
-        <div>
-            <input className="chronicle_image" type="file" onChange={(e)=> setImage(e.target.files[0])} />
+        <div className="select">
+            <input className="select" type="file" onChange={(e)=> setImage(e.target.files[0])} />
         </div>
     </div>
 </fieldset>
@@ -162,7 +150,7 @@ useEffect(() => {
             <fieldset>
             <button 
             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)} 
-            className="btn btn-primary">
+            className="submit-btn-primary">
                 Submit Chronicle Entry
             </button>
             </fieldset>

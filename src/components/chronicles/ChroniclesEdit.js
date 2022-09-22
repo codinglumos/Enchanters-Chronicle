@@ -10,10 +10,13 @@ import { useNavigate, useParams } from "react-router-dom"
 
 export const ChronicleEdit = () => {
     const [chronicle, editChronicle] = useState({
-        chronicle: ""
+        chronicle: "",
+        moonPhase: ""
     })
     const { chronicleId } = useParams()
     const navigate = useNavigate()
+    const [moonPhases, setMoonPhases] = useState([])
+
 
     useEffect(() => {
         fetch(`http://localhost:8088/chronicles/${chronicleId}`)
@@ -22,6 +25,16 @@ export const ChronicleEdit = () => {
                 editChronicle(data)
             })
     }, [chronicleId])
+
+    useEffect(() => {
+        fetch(`http://localhost:8088/moonPhases`)
+        .then(response => response.json())
+        .then((moonArray) =>{
+            setMoonPhases(moonArray)
+          //  editChronicle(moonArray)
+        })    
+    },
+    [])
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -41,10 +54,10 @@ export const ChronicleEdit = () => {
 
 
     return <form className="chronicleForm">
-        <h2 className="chronicleForm__title">Transfigure this Chronicle</h2>
+        <h2 className="title-h1">Transfigure Chronicle</h2>
         <fieldset>
-            <div className="form-group">
-                <label htmlFor="chronicle">Chronicle Entry:</label>
+            <div className="select">
+                <label htmlFor="chronicle">Chronicle Entry</label>
                 <textarea
                     required autoFocus
                     type="text"
@@ -62,7 +75,24 @@ export const ChronicleEdit = () => {
                     }>{chronicle.chronicle}</textarea>
             </div>
         </fieldset>
-    
+        <fieldset>
+                <div className="select">
+                    <label htmlFor="moonPhases">Moon Phase:</label>
+                    <select id="moonPhases" value={chronicle.moonPhase}
+                        onChange={(evt) => {
+                            const copy = structuredClone(chronicle)
+                                copy.moonPhase = evt.target.value
+                                editChronicle(copy) 
+                        }}>
+                            <option value={moonPhases}></option>
+                            {
+                                moonPhases.map(moonPhase => {
+                                    return <option value={chronicle.moonPhase.phaseName} key={`moonPhase--${moonPhase.id}`}>{moonPhase.phaseName}</option>
+                                })
+                            }
+</select>
+                </div>
+            </fieldset>
         <button
             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
             className="btn-btn-primary">
@@ -70,3 +100,5 @@ export const ChronicleEdit = () => {
         </button>
     </form>
 }
+
+    

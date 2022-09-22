@@ -82,7 +82,7 @@ const updatedUser = (event) => {
     const userInfoToSendToAPI = {
         signId: userInfo.signId,
         witchId: userInfo.witchId,
-        //userId: enchantedUserObject.id
+        userId: enchantedUserObject.id
     } 
 
    //TODO-paseInt the updateInfoId?? 
@@ -108,11 +108,11 @@ const updatedUser = (event) => {
     {feedback}
 </div>
         <form className="profile">
-            <h2 className="profile__title">Update Enchanter</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label className="box_label" htmlFor="signs">Zodiac Sign:</label>
-                    <select className="box" id="signs" value={userInfo.signId} type="number"
+            <h2 className="title-h1">Update Enchanter</h2>
+            <fieldset className="updateforms">
+                <div className="select">
+                    <label className="title-h11" htmlFor="signs">Zodiac Sign:</label>
+                    <select className="select option" id="signs" value={userInfo.signId} type="number"
                         
                         onChange={(evt) => {
                             const copy = structuredClone(userInfo)
@@ -122,15 +122,15 @@ const updatedUser = (event) => {
                             <option value={signs}></option>
                             {
                                 signs.map(sign => {
-                                    return <option value={sign.id} key={`sign--${sign.id}`}>{sign.sign}</option>
+                                    return <option className="box" value={sign.id} key={`sign--${sign.id}`}>{sign.sign}</option>
                                 })
                             }</select>
                 </div>
             </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label className="box_label" htmlFor="witch">Witch Type:</label>
-                    <select className="box" id="witch" value={userInfo.witchId} type="number" 
+            <fieldset className="updateforms">
+                <div className="select">
+                    <label className="title-h11" htmlFor="witch">Witch Type:</label>
+                    <select className="select option" id="witch" value={userInfo.witchId} type="number" 
                         onChange={(evt) => {
                             const copy = structuredClone(userInfo)
                                 copy.witchId = parseInt(evt.target.value)
@@ -139,7 +139,7 @@ const updatedUser = (event) => {
                             <option value={witches}></option>
                             {
                                 witches.map(witch => {
-                                    return <option value={witch.id} key={`witch--${witch.id}`}>{witch.type}</option>
+                                    return <option className="box" value={witch.id} key={`witch--${witch.id}`}>{witch.type}</option>
                                 })
                             }
 </select>
