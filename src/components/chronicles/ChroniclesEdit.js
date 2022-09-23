@@ -54,15 +54,13 @@ export const ChronicleEdit = () => {
 
 
     return <form className="chronicleForm">
-        <h2 className="title-h1">Transfigure Chronicle</h2>
+        <h1 className="title-h1">Transfigure Chronicle</h1>
         <fieldset>
             <div className="select">
-                <label htmlFor="chronicle">Chronicle Entry</label>
+                <label htmlFor="chronicle">Chronicle Entry:</label>
                 <textarea
-                    required autoFocus
                     type="text"
                     style={{
-                        height: "10rem"
                     }}
                     className="form-control"
                     value={chronicle.chronicle}
@@ -77,17 +75,17 @@ export const ChronicleEdit = () => {
         </fieldset>
         <fieldset>
                 <div className="select">
-                    <label htmlFor="moonPhases">Moon Phase:</label>
-                    <select id="moonPhases" value={chronicle.moonPhase}
+                   <div><label className="label" htmlFor="moonPhases">Moon Phase:</label></div> 
+                    <select placeholder="Moon Phase" id="moonPhases" value={chronicle.moonPhase}
                         onChange={(evt) => {
                             const copy = structuredClone(chronicle)
                                 copy.moonPhase = evt.target.value
                                 editChronicle(copy) 
                         }}>
-                            <option value={moonPhases}></option>
+                            <option value={moonPhases} placeholder="Moon Phase"></option>
                             {
                                 moonPhases.map(moonPhase => {
-                                    return <option value={chronicle.moonPhase.phaseName} key={`moonPhase--${moonPhase.id}`}>{moonPhase.phaseName}</option>
+                                    return <option placeholder="Moon Phase" value={chronicle.moonPhase.phaseName} key={`moonPhase--${moonPhase.id}`}>{moonPhase.phaseName}</option>
                                 })
                             }
 </select>

@@ -25,7 +25,6 @@
 }
 
 .form-group, .form-control {
-   
     padding: 0.7rem;
     margin: 0.5rem 0;
     color: gold;
@@ -204,3 +203,6 @@
   
 }
 
+.label {
+  display: inline-block;
+}

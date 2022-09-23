@@ -20,7 +20,7 @@ export const EnchantersChronicle = () => {
 				<>
 					<UserNavBar />
 					<UserViews />
-					{SignBackground()}
+					
 
 				</>
 			</Authorized>

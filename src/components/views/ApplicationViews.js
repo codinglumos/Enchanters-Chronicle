@@ -15,11 +15,11 @@ import { SignBackground } from "../profile/Signs"
 export const UserViews = () => {
 	return (
         <Routes>
-            <Route path="/" element={
+            <Route path="/signbackground" element={
                 <>
                     <h1 className="title-h1">Enchanter's Chronicle</h1>
                     <h2 className="title-h2">“There is a little witch in all of us.”</h2>
-                    
+                    {SignBackground()}
                     <Outlet />
                 </>
             }>
@@ -29,6 +29,7 @@ export const UserViews = () => {
         <Route path="chronicles" element={<ChronicleContainer />} />  
        ! <Route path="newUser" element={<NewUserForm /> } />
        <Route path="chronicles/:chronicleId/edit" element={ <ChronicleEdit /> } />
+       <Route path="signbackground/:signId" element={ <SignBackground /> } />
 
 
 		    </Route>

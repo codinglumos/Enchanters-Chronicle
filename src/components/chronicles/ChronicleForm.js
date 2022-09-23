@@ -92,10 +92,9 @@ useEffect(() => {
                 <div className="select">
                     <label className="title-h11" htmlFor="chronicle">Chronicle:</label>
                     <textarea
-                    required autoFocus
                     type="text"
                     style={{
-                        height: "10rem"
+                        // height: "10rem"
                     }}
                         className="form-control"
                         placeholder="New Chronicle Entry.."

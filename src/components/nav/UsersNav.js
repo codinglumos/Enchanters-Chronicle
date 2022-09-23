@@ -8,6 +8,10 @@ export const UserNavBar = () => {
 
     return (
         <ul className="navbar">
+              <li className="navbar__item signbackground">
+                <Link className="navbar__link" to="/signbackground">Hearth</Link>
+            </li>
+            
             <li className="navbar__item chronicle-list">
                 <Link className="navbar__link" to="/chronicles">Chronicles</Link>
             </li>
@@ -15,8 +19,6 @@ export const UserNavBar = () => {
             <li className="navbar__item chronicle-update">
                 <Link className="navbar__link" to="/newUser">Update Enchanter</Link>
             </li>
-
-           
             { 
             localStorage.getItem("enchanted_user")
             ? <li className="navbar__item navbar__logout">
