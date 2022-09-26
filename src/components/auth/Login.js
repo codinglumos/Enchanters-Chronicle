@@ -22,7 +22,7 @@ export const Login = () => {
                         id: user.id,
                     }))
 
-                    navigate("/signbackground")
+                    navigate("/hearth")
                 }
                 else {
                     window.alert("Invalid login")

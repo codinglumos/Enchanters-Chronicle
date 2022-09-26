@@ -8,8 +8,8 @@ export const UserNavBar = () => {
 
     return (
         <ul className="navbar">
-              <li className="navbar__item signbackground">
-                <Link className="navbar__link" to="/signbackground">Hearth</Link>
+              <li className="navbar__item hearth">
+                <Link className="navbar__link" to="/hearth">Hearth</Link>
             </li>
             
             <li className="navbar__item chronicle-list">

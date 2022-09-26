@@ -107,6 +107,7 @@ const updatedUser = (event) => {
     <div className={`${feedback.includes("Error") ? "error" : "feedback"} ${feedback === "" ? "invisible" : "visible"}`}>
     {feedback}
 </div>
+        <div className="newUserBackground">
         <form className="profile">
             <h2 className="title-h1">Update Enchanter</h2>
             <fieldset className="updateforms">
@@ -145,13 +146,14 @@ const updatedUser = (event) => {
 </select>
                 </div>
             </fieldset>
-            
             <button
                 onClick={(clickEvent) => updatedUser(clickEvent)}
                 className="btn-btn-primary">
                 Save Profile
             </button>
         </form>
+        </div> 
+
         </>
     )
 }

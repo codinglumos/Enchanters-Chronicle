@@ -10,7 +10,7 @@
     border: 2px solid purple;
     padding: 0.7rem;
     margin: 0.5rem 0;
-    color:darkcyan;
+    color:#006241;
 }
 
 .form-control, .profile {
@@ -23,15 +23,18 @@
 
 .profile{
   background-image: url(https://static.vecteezy.com/system/resources/previews/003/841/958/original/gold-triple-moon-sacred-geometry-half-moon-pagan-wiccan-goddess-symbol-moon-phases-old-golden-wicca-banner-sign-lotus-flower-energy-circle-boho-style-isolated-on-black-background-vector.jpg);
-  padding: 100px 250px;
   background-repeat: no-repeat;
-  background-size:cover;
-  background-position: center;
+    background-size: cover;
+    background-position: center;
+    padding: 250px;
 }
 
 .updateforms {
-  border: 4px, solid, gold;
-  border-radius: 10;
+  border: 4px, solid, #cb9b51;
+}
+
+html {
+  background-color: black;
 }
 
 .form-group {
@@ -57,9 +60,9 @@
 }
 
 .btn-btn-primary {
-  background-image: radial-gradient(white, gold 50%);
+  background-image: radial-gradient(white, #cb9b51 50%);
   align-items: center;
-  background-color: darkcyan;
+  background-color: #006241;
   border-radius: 42px;
   border-width: 0;
   color:black;
@@ -93,7 +96,7 @@
 
   .box {
     background-color:#20B2AA;
-    color: white;
+    color: #FBFCD4;
     padding: 12px;
     width: 250px;
     border: none;
@@ -102,11 +105,9 @@
     -webkit-appearance: button;
     appearance: button;
     outline: none;
-    border-radius: 42px;
     align-items: center;
-    background-color: darkcyan;
+    background-color: #006241;
     background-image: linear-gradient(rgba(179, 132, 201, .84), rgba(57, 31, 91, .84) 50%);
-    border-radius: 42px;
     border-width: 0;
     box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
     color: #FFFFFF;
@@ -157,29 +158,29 @@
 .box_label {
     text-align: center;
     align-content: space-around;
-
+  color: #FBFCD4;
 }
 
 select {
   margin: 0 auto;
-  color: darkcyan;
+  color: #006241;
   width: 310px;
   padding: 15px;
   height: 25px;
   cursor: pointer;
-  background-color: gold;
+  background-color: #cb9b51;
   border-radius: 20px;
   overflow: hidden;
 }
 
 select:hover {
   background-color: transparent;
-  color: white;
+  color: #FBFCD4;
   padding: 15px 5px 15px 25px;
 }
 
 select option {
-  background-color: white;
+  background-color: #FBFCD4;
   color: gray;
   width: 310px;
   padding: 10px 15px;

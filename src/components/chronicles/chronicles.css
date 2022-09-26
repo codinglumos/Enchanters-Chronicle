@@ -5,10 +5,10 @@
 }
 
 .chroniclelist {
-  background-color: darkcyan;
+  background-color: #006241;
   border: 2px solid black;
   font-family: 'Architects Daughter',cursive;
-  color:white;
+  color:#FBFCD4;
   font-size: 18px;
   padding: 10px;
   margin: 10px;
@@ -16,10 +16,10 @@
 }
 
 .chronicle {
-    background-color: darkcyan;
+    background-color: #006241;
     border: 2px solid black;
     padding: 0.7rem;
-    color:darkcyan;
+    color:#006241;
     font-family: 'Architects Daughter',cursive;
     font-size: 18px;
 }
@@ -27,7 +27,7 @@
 .form-group, .form-control {
     padding: 0.7rem;
     margin: 0.5rem 0;
-    color: gold;
+    color: #cb9b51;
     font-family: "Patua One", serif;
     font-size: 14px;
     line-height: 1.5;
@@ -35,49 +35,75 @@
 
 .chronicle_moon {
     padding: 10px;
-    color: white;
+    color: #FBFCD4;
     font-style: italic;
 }
 
 .btn-btn-deleteChronicle {
-  background-image: radial-gradient(gold, white 50%);
+  background-image: radial-gradient(#FBFCD4, #cb9b51 60%);
   align-items: center;
-  background-color: darkcyan;
+  background-color: #cb9b51;
   border-radius: 42px;
   border-width: 0;
   box-shadow:rgba(255, 255, 255, 0.2)(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
-  color:darkcyan;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  font-family: 'Architects Daughter',cursive;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  line-height: 10px;
+  margin: 10px;
+  padding: 10px 50px 10px 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  justify-content: center;
+  }
+  
+  .submit-btn-primary {
+    background-image: radial-gradient(#FBFCD4, #cb9b51 60%);
+    align-items: center;
+    background-color: #cb9b51;
+    border-radius: 42px;
+    border-width: 0;
+    box-shadow:rgba(255, 255, 255, 0.2)(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
+    color: black;
     cursor: pointer;
     display: flex;
     font-family: 'Architects Daughter',cursive;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 900;
     letter-spacing: .04em;
     line-height: 10px;
     margin: 10px;
     padding: 10px 50px 10px 50px;
     text-align: center;
     text-decoration: none;
-    text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(57, 31, 91, 0.6) 1px 1px 4px,rgba(57, 31, 91, 0.32) 4px 4px 16px;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: baseline;
     justify-content: center;
   }
-  
-  .submit-btn-primary {
-    background-image: radial-gradient(white, gold 50%);
+
+  .button--close {
+    background-image: radial-gradient(#FBFCD4, #cb9b51 60%);
     align-items: center;
-    background-color: darkcyan;
+    background-color: #cb9b51;
     border-radius: 42px;
     border-width: 0;
-    color:black;
+    box-shadow:rgba(255, 255, 255, 0.2)(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
+    color: black;
     cursor: pointer;
     display: flex;
     font-family: 'Architects Daughter',cursive;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 900;
     letter-spacing: .04em;
     line-height: 10px;
     margin: 10px;
@@ -92,18 +118,18 @@
   }
 
   .edit-button {
-    background-image: radial-gradient(gold, white 50%);
+    background-image: radial-gradient(#FBFCD4, #cb9b51 60%);
     align-items: center;
-    background-color: darkcyan;
+    background-color: #cb9b51;
     border-radius: 42px;
     border-width: 0;
     box-shadow:rgba(255, 255, 255, 0.2)(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
-    color:darkcyan;
+    color: black;
     cursor: pointer;
     display: flex;
     font-family: 'Architects Daughter',cursive;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 900;
     letter-spacing: .04em;
     line-height: 10px;
     margin: 10px;
@@ -118,13 +144,13 @@
   }
 
   .create-button {
-    background-image: radial-gradient(darkcyan, gold 60%);
+    background-image: radial-gradient(#FBFCD4, #cb9b51 60%);
     align-items: center;
-    background-color: darkcyan;
+    background-color: #cb9b51;
     border-radius: 42px;
     border-width: 0;
     box-shadow:rgba(255, 255, 255, 0.2)(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
-    color:white;
+    color: black;
     cursor: pointer;
     display: flex;
     font-family: 'Architects Daughter',cursive;
@@ -154,11 +180,11 @@
     border-radius: 8px;
     max-width: 100%;
   height: auto;
-  color: white;
+  color: #FBFCD4;
   }
 
 .search {
-    background-color:darkcyan;
+    background-color: #FBFCD4;
     padding:13px;
     width:335px;
     margin:10px auto;
@@ -166,8 +192,8 @@
     -moz-box-sizing:border-box;
     box-sizing:border-box;
     border-radius:6px;
-    border: darkcyan;
-    background-image: url(https://i.pinimg.com/originals/ba/f1/94/baf19402f62ce9942fa1b08f22d800c5.jpg);
+    border: #006241;
+    background-image: url(https://img.freepik.com/free-vector/golden-waves-background_1284-43064.jpg?w=2000);
     box-shadow: 
         0 2px 4px 0 rgba(72, 72, 72, 0.83),
         0 10px 15px 0 rgba(126, 126, 126, 0.12),
@@ -196,13 +222,14 @@
   height:30px;
   padding-left:15px;
   border-radius:6px;
-  border:darkcyan;
+  border:#006241;
   color:black;
   font-weight:500;
-  background-color:white;
+  background-color:#FBFCD4;
   
 }
 
 .label {
   display: inline-block;
+  color: #FBFCD4;
 }

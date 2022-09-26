@@ -57,7 +57,7 @@ export const ChronicleEdit = () => {
         <h1 className="title-h1">Transfigure Chronicle</h1>
         <fieldset>
             <div className="select">
-                <label htmlFor="chronicle">Chronicle Entry:</label>
+                <label className="title-h11" htmlFor="chronicle">Chronicle Entry:</label>
                 <textarea
                     type="text"
                     style={{
