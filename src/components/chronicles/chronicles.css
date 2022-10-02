@@ -178,9 +178,10 @@
 
   .chronicle_image {
     border-radius: 8px;
-    max-width: 100%;
+    max-width: 500px;
   height: auto;
   color: #FBFCD4;
+  max-height: 500px;
   }
 
 .search {
