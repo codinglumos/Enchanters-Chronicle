@@ -91,7 +91,7 @@ return <>
                         <header>{chronicle.chronicle}</header>
                         {/* Put a moonphase sorter below?? */}
                         <section className="chronicle_moon">Moon Phase: {chronicle.moonPhase}</section>
-                        <img src={chronicle.chronicleImageUrl} />
+                        <img className="chronicle_image" src={chronicle.chronicleImageUrl} />
                         <footer className="chronicle_date">Conjured on {chronicle.dateCompleted}</footer>
                         <button className="edit-button" onClick={() => navigate(`/chronicles/${chronicle.id}/edit`)}>Transfigure</button>
       
