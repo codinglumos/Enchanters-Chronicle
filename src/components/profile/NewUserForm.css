@@ -170,7 +170,8 @@ select {
   cursor: pointer;
   background-color: #cb9b51;
   border-radius: 20px;
-  overflow: hidden;
+  opacity: 70%;
+  
 }
 
 select:hover {

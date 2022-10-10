@@ -109,7 +109,7 @@ const updatedUser = (event) => {
 </div>
         <div className="newUserBackground">
         <form className="profile">
-            <h2 className="title-h1">Update Enchanter</h2>
+            <h2 className="title-h12">Update Enchanter</h2>
             <fieldset className="updateforms">
                 <div className="select">
                     <label className="title-h11" htmlFor="signs">Zodiac Sign:</label>

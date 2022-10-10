@@ -7,6 +7,9 @@ import { ChronicleSearch } from "../chronicles/ChronicleSearch"
 import { useState } from "react"
 import { ChronicleEdit } from "../chronicles/ChroniclesEdit"
 import { SignBackground } from "../profile/Signs"
+import { MoonPhaseImage } from "../views/moonphaseInfo"
+import "./views.css"
+import { TarotImage } from "./tarot"
 
 //This is what the users see when they log in
 //Then routes are made here to take users to other places on the app
@@ -30,6 +33,9 @@ export const UserViews = () => {
        ! <Route path="newUser" element={<NewUserForm /> } />
        <Route path="chronicles/:chronicleId/edit" element={ <ChronicleEdit /> } />
        <Route path="hearth/:signId" element={ <SignBackground /> } />
+       <Route path="moonPhaseInfo" element={ <MoonPhaseImage /> } />
+       <Route path="tarotInfo" element={ <TarotImage /> } />
+
 
 
 		    

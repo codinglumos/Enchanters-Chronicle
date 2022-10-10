@@ -81,7 +81,7 @@ return <>
 {/* <button onClick={() => {setTopPriced(true)}}>Top Priced</button>
 <button onClick={() => {setTopPriced(false)}}>All Products</button> */}
 
-    <h2 className="title-h2">Tally of Chronicles</h2>
+    <h2 className="title-h12">Tally of Chronicles</h2>
 
     <article className="chronicles">
         {

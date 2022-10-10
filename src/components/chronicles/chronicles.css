@@ -184,6 +184,17 @@
   max-height: 500px;
   }
 
+  .sign_image {
+    border-radius: 8px;
+    width: 700px;
+  height: auto;
+  height: 500px;
+  text-align: center;
+  display:block;
+  margin-left: auto;
+  margin-right:auto;
+  }
+
 .search {
     background-color: #FBFCD4;
     padding:13px;

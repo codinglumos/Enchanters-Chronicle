@@ -36,7 +36,7 @@ fetch(`http://localhost:8088/zodiacSigns?userId=${enchantedUserObject.id}`)
 
 //console.log(filteredSign)
 return (
-     <img className="chronicle_image" src={userImage}
+     <img className="sign_image" src={userImage}
       />
   );
   }

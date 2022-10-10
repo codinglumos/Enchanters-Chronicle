@@ -18,17 +18,21 @@ a {
 
 .title-h1 {
     color:#cb9b51;
-    text-shadow: 1px 1px #006241;  
+    text-shadow: 1px 1px #006241; 
+    text-align: center; 
 }
 
 .title-h11 {
     color:#FBFCD4;
     text-shadow: 1px 1px #006241;  
+
 }
 
 .title-h2 {
     color:#cb9b51;
     text-shadow: 1px 1px #006241;  
+    text-align: center; 
+
 }
 
 .h3 {

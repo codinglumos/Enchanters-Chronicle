@@ -19,6 +19,14 @@ export const UserNavBar = () => {
             <li className="navbar__item chronicle-update">
                 <Link className="navbar__link" to="/newUser">Update Enchanter</Link>
             </li>
+
+            <li className="navbar__item chronicle-update">
+                <Link className="navbar__link" to="/moonPhaseInfo">Moon Phase Basics</Link>
+            </li>
+
+            <li className="navbar__item chronicle-update">
+                <Link className="navbar__link" to="/tarotInfo">Tarot Basics</Link>
+            </li>
             { 
             localStorage.getItem("enchanted_user")
             ? <li className="navbar__item navbar__logout">
