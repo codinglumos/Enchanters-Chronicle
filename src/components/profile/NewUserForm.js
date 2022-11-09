@@ -15,7 +15,6 @@ import "./NewUserForm.css"
 export const NewUserForm = () => {
     // TODO: Provide initial state for profile
     const [userInfo, updatedUserInfo] = useState ({
-        witchId: 0,
         signId: 0,
         userId: 0      
     })
@@ -81,7 +80,6 @@ const updatedUser = (event) => {
 
     const userInfoToSendToAPI = {
         signId: userInfo.signId,
-        witchId: userInfo.witchId,
         userId: enchantedUserObject.id
     } 
 
@@ -126,24 +124,6 @@ const updatedUser = (event) => {
                                     return <option className="box" value={sign.id} key={`sign--${sign.id}`}>{sign.sign}</option>
                                 })
                             }</select>
-                </div>
-            </fieldset>
-            <fieldset className="updateforms">
-                <div className="select">
-                    <label className="title-h11" htmlFor="witch">Witch Type:</label>
-                    <select className="select option" id="witch" value={userInfo.witchId} type="number" 
-                        onChange={(evt) => {
-                            const copy = structuredClone(userInfo)
-                                copy.witchId = parseInt(evt.target.value)
-                                updatedUserInfo(copy)
-                        }}>
-                            <option value={witches}></option>
-                            {
-                                witches.map(witch => {
-                                    return <option className="box" value={witch.id} key={`witch--${witch.id}`}>{witch.type}</option>
-                                })
-                            }
-</select>
                 </div>
             </fieldset>
             <button
